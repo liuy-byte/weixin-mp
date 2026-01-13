@@ -7,7 +7,7 @@
 ### 安装
 
 ```bash
-npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/claude-code --registry=https://registry.npmmirror.com
 claude --version  # 验证安装
 ```
 
@@ -118,7 +118,7 @@ claude mcp remove <name>  # 移除服务器
 ```bash
 # 配置国内镜像
 npm config set registry https://registry.npmmirror.com
-npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/claude-code --registry=https://registry.npmmirror.com
 ```
 
 **command not found**

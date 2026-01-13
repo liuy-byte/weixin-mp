@@ -55,7 +55,7 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 
 如果你已经安装了 Node.js 18+：
 ```bash
-npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/claude-code --registry=https://registry.npmmirror.com
 ```
 
 ### 首次登录
