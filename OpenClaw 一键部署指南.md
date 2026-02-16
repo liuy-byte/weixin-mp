@@ -400,7 +400,29 @@ OpenClaw 让 AI 助手回归本质：**你的数据，你做主**。
 
 ## 相关链接
 
-- [官网](https://openclaw.bot/) | [文档](https://docs.openclaw.bot/)
-- [MiniMax 配置指南](https://platform.minimaxi.com/document/OpenClaw)
-- [Claude API Key](https://console.anthropic.com/) | [OpenAI API Key](https://platform.openai.com/)
-- [MiniMax API Key（国内可用）](https://platform.minimaxi.com/)
+> 💡 微信内无法直接点击链接，请长按复制到浏览器打开
+
+**OpenClaw 官方资源**
+```
+官网：https://openclaw.bot/
+文档：https://docs.openclaw.bot/
+```
+
+**MiniMax 平台**
+```
+配置指南：https://platform.minimaxi.com/document/OpenClaw
+获取 API Key：https://platform.minimaxi.com/
+```
+
+**其他 AI 平台**
+```
+Claude API Key：https://console.anthropic.com/
+OpenAI API Key：https://platform.openai.com/
+```
+
+---
+
+**本文同步发布于 GitHub**，完整版可访问：
+```
+https://github.com/liuy-byte/weixin-mp
+```
