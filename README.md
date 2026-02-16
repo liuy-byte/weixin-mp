@@ -5,6 +5,7 @@
 ## 内容
 
 - [在 Claude Code 中使用 MiniMax-M2.1 模型进行 AI 编程](./在%20Claude%20Code%20中使用%20MiniMax-M2.1%20模型进行%20AI%20编程.md)
+- [OpenClaw 一键部署指南](./OpenClaw%20一键部署指南.md)
 
 ## 技术栈
 
