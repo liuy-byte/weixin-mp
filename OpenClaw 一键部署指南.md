@@ -18,15 +18,20 @@
 
 **Node.js 18+**
 
-推荐使用 fnm 管理 Node.js 版本：
+从 [Node.js 官网](https://nodejs.org/) 下载安装 LTS 版本，或使用包管理器：
 
 ```bash
-# 安装 LTS 版本
-fnm install --lts
-fnm use lts-latest
+# macOS
+brew install node
+
+# Windows
+winget install OpenJS.NodeJS.LTS
+
+# 验证安装
+node --version
 ```
 
-> 💡 如需 fnm 详细安装步骤，可参考 [fnm 安装指南](./fnm-安装指南.md)
+> 💡 推荐使用 [fnm](./fnm-安装指南.md) 管理多个 Node.js 版本
 
 **API Key（至少一个）**
 
