@@ -65,18 +65,31 @@ iwr -useb https://openclaw.ai/install.ps1 | iex
 
 ### 初始化配置
 
-安装完成后，运行配置向导：
+安装完成后，有两种配置方式：
+
+**方式一：快速配置（推荐）**
 
 ```bash
 # 启动配置向导
 openclaw configure
 ```
 
-向导会引导你完成以下配置：
+**方式二：完整初始化**
+
+```bash
+# 首次安装或需要完整配置时使用
+openclaw onboard --install-daemon
+```
+
+两种方式都会引导你完成配置，区别在于 `onboard` 会进行更完整的初始化设置。
+
+#### 配置流程
 
 **基础设置**：
-1. **Gateway 运行位置** → 选择 Local (this machine)
-2. **配置项** → 选择 Model
+1. **同意声明** → 选择 Yes（仅 onboard 方式）
+2. **Onboarding Mode** → 选择 QuickStart（仅 onboard 方式）
+3. **Gateway 运行位置** → 选择 Local (this machine)
+4. **配置项** → 选择 Model
 
 **模型配置**：
 1. **Model/auth provider** → 选择您的 AI 提供商（Claude / OpenAI / MiniMax 等）
@@ -84,6 +97,13 @@ openclaw configure
    - **MiniMax OAuth**（推荐）：自动弹出浏览器登录，无需手动复制 API Key
    - **API Key**：手动输入从平台获取的密钥
 3. **完成认证** → OAuth 会自动完成，API Key 方式需粘贴密钥
+
+**功能配置**（可选，onboard 方式会询问）：
+- **Channel**：选择需要集成的平台（WhatsApp、Telegram 等）
+- **Skill**：启用特定功能模块
+- **Hooks**：启用自动化钩子
+  - 💾 `session-memory`：执行 `/new` 时自动保存会话上下文
+  - 📝 `command-logger`：记录所有命令到日志文件
 
 > 💡 **国内用户推荐**：使用 MiniMax OAuth 方式，选择 CN endpoint，一键登录即可
 
@@ -98,7 +118,7 @@ openclaw gateway run
 
 ### 快速验证
 
-在终端中运行交互式界面：
+**方式一：终端交互界面**
 
 ```bash
 openclaw tui
@@ -109,6 +129,16 @@ openclaw tui
 ```text
 帮我创建一个 hello.txt 文件，内容是 "Hello OpenClaw"
 ```
+
+**方式二：Web 管理界面**
+
+在浏览器中访问：`http://127.0.0.1:18789`
+
+可以在 Web 界面中：
+- 查看和修改配置（Config 页面）
+- 测试对话功能
+- 管理集成平台
+- 查看运行日志
 
 如果 AI 成功响应并创建文件，说明部署完成！🚀
 
@@ -258,6 +288,29 @@ openclaw configure
 ```bash
 nano ~/.openclaw/openclaw.json
 ```
+
+### 国内用户使用 MiniMax API Key
+
+如果使用 MiniMax API Key（非 OAuth）方式，国内用户需要修改配置：
+
+**方法一：编辑配置文件**
+
+打开配置文件 `~/.openclaw/openclaw.json`，找到 `models.providers.minimax.baseUrl`，修改为：
+
+```json
+"baseUrl": "https://api.minimaxi.com/anthropic"
+```
+
+注意：将 `api.minimax.io` 改为 `api.minimaxi.com`（注意 minimax 后有个 i）
+
+**方法二：Web 界面修改**
+
+1. 启动网关：`openclaw gateway run`
+2. 访问 `http://127.0.0.1:18789`
+3. 进入 **Config** → **models** 栏目
+4. 修改 `baseUrl` 为 `https://api.minimaxi.com/anthropic`
+5. 打开 **Auth Header** 开关
+6. 点击 **Save** 保存，然后点击 **Update** 更新配置
 
 ### macOS 伴侣应用问题
 
