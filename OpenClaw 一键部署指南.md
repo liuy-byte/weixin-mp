@@ -41,7 +41,7 @@ OpenClaw 支持多个 AI 提供商，选择其中一个获取 API Key：
 |--------|---------|------|
 | Claude | https://console.anthropic.com/ | 推荐，能力强大 |
 | OpenAI | https://platform.openai.com/ | 通用选择 |
-| MiniMax | https://minimaxi.com | 国内可用 |
+| MiniMax | https://platform.minimaxi.com/ | 国内可用，支持 OAuth |
 
 ---
 
@@ -53,53 +53,64 @@ OpenClaw 支持多个 AI 提供商，选择其中一个获取 API Key：
 
 ```bash
 # 执行安装脚本
-curl -fsSL https://openclaw.ai/install.sh | bash
+curl -fsSL https://openclaw.bot/install.sh | bash
 ```
 
 ### Windows
 
 ```powershell
 # PowerShell 中执行
-irm https://openclaw.ai/install.ps1 | iex
+iwr -useb https://openclaw.ai/install.ps1 | iex
 ```
 
 ### 初始化配置
 
-安装完成后，运行初始化向导：
+安装完成后，运行配置向导：
 
 ```bash
 # 启动配置向导
-openclaw onboard
+openclaw configure
 ```
 
 向导会引导你完成以下配置：
-1. **选择 AI 提供商**（Claude / OpenAI / MiniMax 等）
-2. **输入 API Key**（粘贴从上述平台获取的密钥）
-3. **设置数据存储位置**（默认 `~/.openclaw`）
-4. **配置伴侣应用**（macOS 可选，增强系统集成）
+
+**基础设置**：
+1. **Gateway 运行位置** → 选择 Local (this machine)
+2. **配置项** → 选择 Model
+
+**模型配置**：
+1. **Model/auth provider** → 选择您的 AI 提供商（Claude / OpenAI / MiniMax 等）
+2. **Auth method** → 选择认证方式
+   - **MiniMax OAuth**（推荐）：自动弹出浏览器登录，无需手动复制 API Key
+   - **API Key**：手动输入从平台获取的密钥
+3. **完成认证** → OAuth 会自动完成，API Key 方式需粘贴密钥
+
+> 💡 **国内用户推荐**：使用 MiniMax OAuth 方式，选择 CN endpoint，一键登录即可
 
 ### 启动服务
 
 ```bash
-# 启动 OpenClaw
-openclaw start
+# 启动网关服务
+openclaw gateway run
 ```
 
-启动成功后，终端会显示：
-
-```
-✅ OpenClaw is running on http://localhost:3000
-```
+启动成功后，终端会显示网关运行信息。
 
 ### 快速验证
 
-在浏览器打开 `http://localhost:3000`，输入以下测试命令：
+在终端中运行交互式界面：
+
+```bash
+openclaw tui
+```
+
+输入以下测试命令：
 
 ```text
 帮我创建一个 hello.txt 文件，内容是 "Hello OpenClaw"
 ```
 
-如果文件创建成功，说明部署完成！🚀
+如果 AI 成功响应并创建文件，说明部署完成！🚀
 
 ---
 
@@ -111,16 +122,24 @@ openclaw start
 # 使用国内镜像安装
 npm install -g openclaw --registry=https://registry.npmmirror.com
 
-# 安装完成后初始化
-openclaw onboard
+# 初始化配置
+openclaw configure
 
-# 启动服务
-openclaw start
+# 启动网关服务
+openclaw gateway run
 ```
 
 ---
 
 ## 四、核心功能使用
+
+OpenClaw 支持多种交互方式，最常用的是终端交互界面（TUI）。
+
+### 启动交互界面
+
+```bash
+openclaw tui
+```
 
 ### 文件操作
 
@@ -215,12 +234,29 @@ Windows 系统：以管理员身份运行 PowerShell
 **问题**：启动时提示 "Invalid API Key"
 
 **解决方案**：
+
 1. 检查 API Key 是否正确（去掉多余的空格）
 2. 确认提供商选择正确（Claude 的 Key 不能用于 OpenAI）
 3. 重新运行配置向导：
+
 ```bash
-openclaw config --reset
-openclaw onboard
+openclaw configure
+```
+
+选择 Model 配置项，重新输入正确的 API Key
+
+### 配置文件位置
+
+如需手动编辑配置，配置文件位于：
+
+```bash
+~/.openclaw/openclaw.json
+```
+
+可以使用文本编辑器打开：
+
+```bash
+nano ~/.openclaw/openclaw.json
 ```
 
 ### macOS 伴侣应用问题
@@ -240,7 +276,9 @@ openclaw onboard
 **步骤 1**：停止服务
 
 ```bash
-openclaw stop
+# 停止网关服务（Ctrl+C 终止运行中的 gateway）
+# 如果作为后台服务运行，可以查找进程并终止
+ps aux | grep openclaw
 ```
 
 **步骤 2**：卸载程序
@@ -294,6 +332,7 @@ OpenClaw 让 AI 助手回归本质：**你的数据，你做主**。
 
 ## 相关链接
 
-- [官网](https://openclaw.ai/) | [GitHub](https://github.com/openclaw/openclaw)
-- [文档](https://openclaw.ai/docs) | [社区](https://openclaw.ai/community)
-- [API Key 获取](https://console.anthropic.com/) | [MiniMax（国内）](https://minimaxi.com)
+- [官网](https://openclaw.bot/) | [文档](https://docs.openclaw.bot/)
+- [MiniMax 配置指南](https://platform.minimaxi.com/document/OpenClaw)
+- [Claude API Key](https://console.anthropic.com/) | [OpenAI API Key](https://platform.openai.com/)
+- [MiniMax API Key（国内可用）](https://platform.minimaxi.com/)
