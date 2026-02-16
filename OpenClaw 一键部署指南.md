@@ -383,6 +383,21 @@ OpenClaw 让 AI 助手回归本质：**你的数据，你做主**。
 
 ---
 
+## 🎁 免费体验福利
+
+想快速体验 OpenClaw + MiniMax 的强大功能？
+
+**关注本公众号，回复「MiniMax API Key」，即可获取临时测试密钥！**
+
+使用临时 API Key 可以：
+- ✅ 快速体验 OpenClaw 的核心功能
+- ✅ 测试 MiniMax M2.5 模型能力
+- ✅ 无需立即注册 MiniMax 账号
+
+> 💡 临时密钥有效期 7 天，每日有调用次数限制。如需长期使用，建议前往 [MiniMax 平台](https://platform.minimaxi.com/) 注册账号获取正式 API Key。
+
+---
+
 ## 相关链接
 
 - [官网](https://openclaw.bot/) | [文档](https://docs.openclaw.bot/)
