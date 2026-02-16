@@ -88,9 +88,9 @@ openclaw start
 
 ### 快速验证
 
-在浏览器打开 `http://localhost:3000`，输入以下命令测试：
+在浏览器打开 `http://localhost:3000`，输入以下测试命令：
 
-```
+```text
 帮我创建一个 hello.txt 文件，内容是 "Hello OpenClaw"
 ```
 
@@ -98,9 +98,7 @@ openclaw start
 
 ---
 
-## 三、其他部署方式
-
-### 方式二：npm 全局安装
+## 三、npm 全局安装（备选）
 
 **适合场景**：熟悉 npm 的开发者，国内用户可使用镜像加速
 
@@ -110,26 +108,9 @@ npm install -g openclaw --registry=https://registry.npmmirror.com
 
 # 安装完成后初始化
 openclaw onboard
-openclaw start
-```
-
-### 方式三：源代码部署
-
-**适合场景**：需要自定义修改、参与开源贡献的开发者
-
-```bash
-# 克隆仓库
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw
-
-# 安装依赖（国内镜像）
-npm install --registry=https://registry.npmmirror.com
-
-# 构建项目
-npm run build
 
 # 启动服务
-npm start
+openclaw start
 ```
 
 ---
@@ -138,34 +119,35 @@ npm start
 
 ### 文件操作
 
-```
-# 创建文件
+```text
 创建一个 todo.md 文件，列出今天的任务清单
+```
 
-# 读取文件
+```text
 读取 package.json 的内容并解释依赖项
+```
 
-# 修改文件
+```text
 把 config.json 中的端口号改为 8080
 ```
 
 ### 浏览网页
 
-```
-# 抓取网页内容
+```text
 访问 https://news.ycombinator.com 并总结今天的热门话题
+```
 
-# 搜索信息
+```text
 搜索 "OpenClaw 使用教程" 并整理关键要点
 ```
 
 ### 执行命令
 
-```
-# Git 操作
+```text
 帮我提交代码，commit 信息是 "feat: 添加用户认证模块"
+```
 
-# 项目构建
+```text
 运行 npm test 并分析测试失败的原因
 ```
 
@@ -173,11 +155,13 @@ npm start
 
 OpenClaw 会记住对话历史和上下文，重启后仍能继续之前的任务：
 
-```
-# 第一次对话
+```text
 帮我分析这个项目的架构
+```
 
-# 重启后继续
+重启后继续：
+
+```text
 上次你分析的项目，能帮我重构路由模块吗？
 ```
 
@@ -201,25 +185,25 @@ OpenClaw 支持 30+ 平台集成：
 
 ### 安装失败
 
-**问题**：执行安装脚本时提示网络错误
+**问题 1**：执行安装脚本时提示网络错误
 
-**解决方案**：
+**解决方案**：改用 npm 安装方式（支持国内镜像）
+
 ```bash
-# 使用代理或手动下载安装包
-wget https://openclaw.ai/releases/latest/openclaw-linux-x64.tar.gz
-tar -xzf openclaw-linux-x64.tar.gz
-sudo mv openclaw /usr/local/bin/
+npm install -g openclaw --registry=https://registry.npmmirror.com
 ```
 
-**问题**：权限不足（Permission denied）
+**问题 2**：权限不足（Permission denied）
 
 **解决方案**：
-```bash
-# Linux/macOS 添加执行权限
-sudo chmod +x /usr/local/bin/openclaw
 
-# Windows 以管理员身份运行 PowerShell
+macOS/Linux 系统：
+```bash
+# 使用 sudo 权限安装
+sudo npm install -g openclaw --registry=https://registry.npmmirror.com
 ```
+
+Windows 系统：以管理员身份运行 PowerShell
 
 ### API Key 配置错误
 
@@ -239,21 +223,32 @@ openclaw onboard
 **问题**：macOS 提示"无法打开未经验证的开发者应用"
 
 **解决方案**：
-```bash
-# 在系统设置中允许
-系统设置 > 隐私与安全性 > 允许从以下位置下载的应用 > App Store 和已认可的开发者
-```
+
+1. 打开**系统设置**
+2. 进入**隐私与安全性**
+3. 找到"允许从以下位置下载的应用"
+4. 选择"App Store 和已认可的开发者"
+5. 如仍被拦截，点击"仍要打开"按钮
 
 ### 卸载方法
 
+**步骤 1**：停止服务
+
 ```bash
-# 停止服务
 openclaw stop
+```
 
-# 卸载（npm 安装方式）
+**步骤 2**：卸载程序
+
+```bash
 npm uninstall -g openclaw
+```
 
-# 删除数据（可选，会删除所有配置和对话历史）
+**步骤 3**（可选）：删除数据
+
+> ⚠️ 此操作会删除所有配置和对话历史，请谨慎执行
+
+```bash
 rm -rf ~/.openclaw
 ```
 
