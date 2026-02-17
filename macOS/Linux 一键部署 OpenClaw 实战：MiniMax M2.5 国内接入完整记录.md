@@ -18,25 +18,30 @@
 
 ---
 
-## 一、我的实战环境
+## 一、准备工作
+
+### 系统要求
 
 | 配置项 | 我的环境 | 兼容范围 |
 |--------|---------|---------|
 | 操作系统 | Ubuntu 20.04 | macOS 10.15+ / Linux 各发行版 |
-| Node.js | v22.22.0 | v18+ 必需 |
-| 网络环境 | 国内直连 | 推荐配置 npm 镜像 |
-| 安装方式 | 一键脚本 | 或 npm 全局安装 |
+| 网络环境 | 国内直连 | 可访问 openclaw.ai |
 
-**环境说明**:
-- ✅ 已安装 Node.js（通过 nvm/fnm 管理）
-- ✅ Git 已配置
-- ✅ 有 MiniMax 账号（准备使用 API Key）
+**依赖说明**:
+- ✅ Node.js（v18+）和 Git 会由安装脚本自动检测和安装
+- ✅ 无需提前安装任何依赖，脚本会自动处理
 
-**MiniMax API Key 获取**:
+### 获取 MiniMax API Key
+
+这是**唯一需要提前准备**的内容：
+
 1. 访问 https://platform.minimaxi.com/
 2. 注册/登录账号
 3. 进入 **API Keys** 页面
-4. 创建新密钥并复制保存
+4. 点击"创建新密钥"
+5. 复制并保存 API Key（格式：`sk-cp-...`）
+
+> 💡 **提示**: 也可以不提前准备，在配置时再注册获取，但提前准备可以加快部署速度
 
 ---
 
@@ -95,17 +100,19 @@ Molting complete. Please don't look at my soft shell phase.
 
 ### 关键步骤解读
 
-**1. 环境检测**
-- 自动检测 Node.js 版本，低于 v18 会提示升级
-- 检查 Git 安装状态
+**1. 环境检测与自动配置**
+- 自动检测 Node.js（v18+），如未安装会自动安装
+- 自动检测 Git，如未安装会自动安装
+- 无需手动干预，脚本全自动处理依赖
 
 **2. 版本管理**
-- 已安装旧版会自动升级
-- 保留原有配置文件
+- 检测到旧版 OpenClaw 会自动升级
+- 保留原有配置文件（自动备份）
 
 **3. Doctor 诊断**
 - 自动运行健康检查
 - 迁移配置到新版本格式
+- 检测系统环境和插件状态
 
 ### 安装后诊断
 
@@ -585,13 +592,10 @@ curl -fsSL https://openclaw.ai/install.sh | bash
 
 **解决方案**:
 
-macOS/Linux 系统：
 ```bash
 # 使用 sudo 权限安装
 sudo npm install -g openclaw --registry=https://registry.npmmirror.com
 ```
-
-Windows 系统：以管理员身份运行 PowerShell
 
 ### 配置错误
 
