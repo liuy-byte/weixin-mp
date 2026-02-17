@@ -869,8 +869,8 @@ OpenClaw 让 AI 助手回归本质：**你的数据，你做主**。
 
 **OpenClaw 官方资源**
 ```
-官网：https://openclaw.bot/
-文档：https://docs.openclaw.bot/
+官网：https://openclaw.ai/
+文档：https://docs.openclaw.ai/
 ```
 
 **MiniMax 平台**
@@ -881,6 +881,6 @@ OpenClaw 让 AI 助手回归本质：**你的数据，你做主**。
 
 **其他 AI 平台**
 ```
-Claude API Key：https://console.anthropic.com/
+Claude API Key：https://console.claude.com/
 OpenAI API Key：https://platform.openai.com/
 ```
