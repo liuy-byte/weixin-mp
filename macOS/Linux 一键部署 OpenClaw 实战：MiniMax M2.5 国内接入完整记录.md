@@ -884,10 +884,3 @@ OpenClaw 让 AI 助手回归本质：**你的数据，你做主**。
 Claude API Key：https://console.anthropic.com/
 OpenAI API Key：https://platform.openai.com/
 ```
-
----
-
-**本文同步发布于 GitHub**，完整版可访问：
-```
-https://github.com/liuy-byte/weixin-mp
-```
