@@ -31,8 +31,6 @@ winget install OpenJS.NodeJS.LTS
 node --version
 ```
 
-> 💡 推荐使用 [fnm](./fnm-安装指南.md) 管理多个 Node.js 版本
-
 **API Key（至少一个）**
 
 OpenClaw 支持多个 AI 提供商，选择其中一个获取 API Key：
