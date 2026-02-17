@@ -10,7 +10,7 @@
 
 ### 核心价值
 - ✅ **真实实操记录**：基于 Ubuntu 20.04 实际部署过程
-- ✅ **国内优化方案**：MiniMax M2.5 CN 节点 + OAuth 配置
+- ✅ **国内优化方案**：MiniMax M2.5 CN 节点 + API Key 配置
 - ✅ **完整性**：从环境准备到验证使用的全流程
 - ✅ **问题预案**：提前规避常见坑点
 
@@ -22,7 +22,7 @@
 | 风格 | 文档式教程 | 实操流水账 + 命令行输出 |
 | 系统 | macOS/Windows/Linux 通用 | 侧重 Linux，兼顾 macOS |
 | 模型 | 多模型选项 | 聚焦 MiniMax M2.5 国内接入 |
-| 深度 | 基础配置 | 包含 OAuth 登录详细流程 |
+| 深度 | 基础配置 | API Key + CN endpoint 详细配置 |
 
 ---
 
@@ -147,30 +147,22 @@ curl -fsSL https://openclaw.ai/install.sh | bash
 - 完整的 `openclaw onboard` 输出
 - 每个选择项的说明
 
-#### 3.2 方式一：OAuth 一键登录（推荐）⭐
-**优势说明**:
-- 无需手动复制 API Key
-- 自动刷新 Token
-- 零配置错误风险
-
-**操作步骤**:
-- 选择 "MiniMax M2.5 (CN)"
-- 浏览器自动打开扫码
-- 授权完成自动返回
-
-**国内用户注意事项**:
-- 选择 CN 节点的重要性
-- OAuth vs API Key 的区别
-
-#### 3.3 方式二：API Key 手动配置
-**适用场景**:
-- OAuth 失败时的备选方案
-- 需要使用特定 API Key
+#### 3.2 MiniMax API Key 配置 ⭐
+**实际采用**: API Key 方式（实操记录中使用）
 
 **配置要点**:
-- API Key 获取步骤
-- baseUrl 修改（api.minimaxi.com）
-- 配置文件位置和格式
+- 选择 "MiniMax M2.5 (CN)" 认证方式
+- API Key 获取步骤（platform.minimaxi.com）
+- 粘贴 API Key（避免手动输入）
+- 确认默认模型
+
+**CN Endpoint 配置**:
+- 方式一：选择 "MiniMax M2.5 (CN)" 自动配置（推荐）
+- 方式二：手动修改 baseUrl 为 api.minimaxi.com/anthropic
+
+**重要提示**:
+- 是 api.minimaxi.com（有个 i），不是 api.minimax.io
+- 配置文件位置：~/.openclaw/openclaw.json
 
 #### 3.4 模型选择说明
 - MiniMax-M2.5 vs M2.1 区别
