@@ -1,4 +1,4 @@
-# OpenClaw｜飞书机器人对接全步骤，7步跑通
+# OpenClaw｜飞书机器人对接全步骤，3步跑通
 
 > 装好了 OpenClaw，飞书接入却卡在权限配置和事件订阅？这里是从建应用到机器人响应的完整路径，照着做不绕弯。
 
@@ -11,34 +11,26 @@
 
 ---
 
-## 一、飞书开放平台创建自建应用
+## 第一步：创建飞书应用
 
-访问 open.feishu.cn，登录飞书账号，点击「创建自建应用」，按下表填写：
+### 新建自建应用
+
+访问 open.feishu.cn，登录飞书账号，点击「创建自建应用」：
 
 | 配置项 | 推荐值 |
 |--------|--------|
 | 应用名称 | OpenClaw |
 | 应用描述 | 个人专属 AI 智能助手 |
-| 应用类型 | 机器人应用 |
 
 ![创建自建应用](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a3d0a511fea278250c353f5c33f03584)
 
----
+### 获取凭证
 
-## 二、获取凭证
-
-在「凭证与基础信息」页面复制：
-
-- **App ID**：形如 `cli_xxxxxxxxxxxxx`
-- **App Secret**：一串加密字符
-
-后续配置 OpenClaw 时需要用到。
+在「凭证与基础信息」页面复制 **App ID** 和 **App Secret**，后续配置 OpenClaw 时使用。
 
 ![获取 App ID 和 App Secret](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=3a6ac22e96d76e4b85a1171ea207608b)
 
----
-
-## 三、配置应用权限（批量导入）
+### 配置权限（批量导入）
 
 侧边栏「权限管理」→「批量导入」，粘贴以下 JSON 后确认开通：
 
@@ -72,75 +64,70 @@
 
 ![批量导入权限](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a386d201628f65771d9d423056d9dc59)
 
----
-
-## 四、启用机器人能力
+### 启用机器人能力
 
 侧边栏「应用功能」→「机器人」，开启机器人能力并填写机器人名称。
 
 ![启用机器人能力](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=4c330500fd7db2e72569dc2a379697ee)
 
----
-
-## 五、配置事件订阅
+### 配置事件订阅
 
 侧边栏「事件与回调」→「事件订阅」：
 
-- 加密策略：**长连接模式**（WebSocket）
-- 订阅事件：搜索并添加 `im.message.receive_v1`（接收消息）
+- 加密策略选择**长连接模式**（WebSocket）
+- 添加事件 `im.message.receive_v1`
 
-事件订阅缺失是飞书机器人无响应最常见的原因之一。
+事件订阅缺失是机器人无响应最常见的原因。
 
 ![配置事件订阅](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=00aeb4809d9df159d846e0be19bc871e)
 
+### 发布应用
+
+创建版本，填写版本号，选择可用范围后点击发布。个人版自建应用提交后直接上线，无需审核。
+
 ---
 
-## 六、OpenClaw 端安装并配置飞书插件
+## 第二步：配置 OpenClaw
 
 ```bash
-# 安装飞书通道插件
+# 安装飞书插件
 openclaw plugins install @openclaw/feishu
 
 # 交互式添加飞书频道，按提示输入 App ID 和 App Secret
 openclaw channels add
-
-# 重启网关使配置生效
-openclaw gateway restart
 ```
 
 ---
 
-## 七、发布机器人、完成配对并验证
+## 第三步：启动并测试
 
-**发布**：回到飞书开放平台，创建版本，填写版本号，选择可用范围后点击发布。个人版自建应用提交后直接上线，无需审核。
+```bash
+# 启动网关
+openclaw gateway restart
+```
 
-**配对**：在飞书中找到刚发布的机器人，发送任意消息，终端会出现配对码（Pairing Code），执行：
+在飞书中向机器人发送任意消息，终端会出现配对码，执行：
 
 ```bash
 openclaw pairing approve feishu 配对码
 ```
 
-**验证**：再次向机器人发消息，收到 AI 回复即表示对接成功。
+再次发消息，收到 AI 回复即对接成功。
 
 ---
 
 ## 常见问题
 
-**❌ 机器人无响应（无报错）**
+**❌ 机器人无响应**：检查事件订阅是否添加 `im.message.receive_v1`，以及是否选择了长连接模式。
 
-检查事件订阅是否已添加 `im.message.receive_v1`，以及是否选择了**长连接模式**。
-
-**❌ duplicate plugin id detected（插件重复加载）**
-
-原因：飞书插件同时存在于全局路径和用户配置路径。
+**❌ duplicate plugin id detected**：飞书插件重复加载。
 
 ```bash
-# 删除重复插件，重启服务
 rm -rf ~/.openclaw/extensions/feishu
 openclaw gateway restart
 ```
 
-**❌ Cannot find module 'zod'（Zod 依赖缺失）**
+**❌ Cannot find module 'zod'**：
 
 ```bash
 npm install -g zod
@@ -155,8 +142,8 @@ openclaw gateway restart
 |------|------|
 | 安装飞书插件 | `openclaw plugins install @openclaw/feishu` |
 | 添加飞书频道 | `openclaw channels add` |
-| 配对审批 | `openclaw pairing approve feishu 配对码` |
 | 重启网关 | `openclaw gateway restart` |
+| 配对审批 | `openclaw pairing approve feishu 配对码` |
 | 查看网关状态 | `openclaw gateway status` |
 | 实时日志 | `openclaw logs --follow` |
 
