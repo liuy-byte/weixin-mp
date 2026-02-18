@@ -1,4 +1,4 @@
-# AI多面怪｜用好这16个命令，Claude Code效率提升明显
+# 用好这16个命令，Claude Code效率提升明显
 
 > 接手新代码库无从下手？调试Bug毫无头绪？Code Review总漏掉关键问题？用好Claude Code的16个命令，开发效率能提升不少。
 
