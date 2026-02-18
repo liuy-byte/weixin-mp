@@ -31,48 +31,60 @@
 {
   "scopes": {
     "tenant": [
-      "im:message",
-      "im:message:send_as_bot",
-      "im:message:readonly",
-      "im:message.p2p_msg:readonly",
-      "im:message.group_at_msg:readonly",
-      "im:chat.access_event.bot_p2p_chat:read",
-      "im:chat.members:bot_access",
-      "im:resource",
+      "aily:file:read", "aily:file:write",
+      "application:application.app_message_stats.overview:readonly",
+      "application:application:self_manage",
+      "application:bot.menu:write", "cardkit:card:write",
       "contact:user.employee_id:readonly",
-      "application:bot.menu:write"
+      "corehr:file:download", "docs:document.content:read",
+      "event:ip_list", "im:chat",
+      "im:chat.access_event.bot_p2p_chat:read",
+      "im:chat.members:bot_access", "im:message",
+      "im:message.group_at_msg:readonly",
+      "im:message.group_msg",
+      "im:message.p2p_msg:readonly",
+      "im:message:readonly", "im:message:send_as_bot",
+      "im:resource", "sheets:spreadsheet",
+      "wiki:wiki:readonly"
     ],
     "user": [
+      "aily:file:read", "aily:file:write",
       "im:chat.access_event.bot_p2p_chat:read"
     ]
   }
 }
 ```
 
-保留完整权限列表，避免后续补权报错。
+---
+
+## 三、配置事件订阅
+
+侧边栏「事件与回调」→「事件订阅」：
+
+- 加密策略：**长连接模式**
+- 订阅事件：搜索并添加 `im.message.receive_v1`（接收消息）
+
+事件订阅缺失是飞书机器人无响应最常见的原因之一。
 
 ---
 
-## 三、获取凭证
+## 四、获取凭证
 
 在「凭证与基础信息」页面复制：
 
 - **App ID**：形如 `cli_xxxxxxxxxxxxx`
 - **App Secret**：一串加密字符
 
-两个值后续配置 OpenClaw 时需要用到。
-
 ---
 
-## 四、OpenClaw 端安装并配置飞书插件
+## 五、OpenClaw 端安装并配置飞书插件
 
 ```bash
 # 安装飞书通道插件
-openclaw skills install feishu
+openclaw plugins install @openclaw/feishu
 
-# 填入凭证
-openclaw config set plugins.feishu.appId "你的AppID"
-openclaw config set plugins.feishu.appSecret "你的AppSecret"
+# 交互式添加飞书频道，按提示输入 App ID 和 App Secret
+openclaw channels add
 
 # 重启网关使配置生效
 openclaw gateway restart
@@ -80,7 +92,7 @@ openclaw gateway restart
 
 ---
 
-## 五、飞书开放平台发布机器人
+## 六、飞书开放平台发布机器人
 
 回到飞书开放平台，创建版本：
 
@@ -92,7 +104,7 @@ openclaw gateway restart
 
 ---
 
-## 六、完成配对审批
+## 七、完成配对并验证
 
 在飞书中找到刚发布的机器人，发送任意消息，终端会出现配对码（Pairing Code），执行：
 
@@ -100,15 +112,15 @@ openclaw gateway restart
 openclaw pairing approve feishu 配对码
 ```
 
----
-
-## 七、验证对话
-
-飞书内再次向机器人发消息，收到 AI 回复即表示对接成功。
+再次向机器人发消息，收到 AI 回复即表示对接成功。
 
 ---
 
 ## 常见问题
+
+**❌ 机器人无响应（无报错）**
+
+检查事件订阅是否已添加 `im.message.receive_v1`，以及是否选择了**长连接模式**。
 
 **❌ duplicate plugin id detected（插件重复加载）**
 
@@ -133,11 +145,12 @@ openclaw gateway restart
 
 | 操作 | 命令 |
 |------|------|
-| 安装飞书插件 | `openclaw skills install feishu` |
-| 配置 App ID | `openclaw config set plugins.feishu.appId "xxx"` |
-| 配置 App Secret | `openclaw config set plugins.feishu.appSecret "xxx"` |
+| 安装飞书插件 | `openclaw plugins install @openclaw/feishu` |
+| 添加飞书频道 | `openclaw channels add` |
 | 配对审批 | `openclaw pairing approve feishu 配对码` |
 | 重启网关 | `openclaw gateway restart` |
+| 查看网关状态 | `openclaw gateway status` |
+| 实时日志 | `openclaw logs --follow` |
 
 ---
 
@@ -152,5 +165,6 @@ openclaw gateway restart
 **OpenClaw**
 ```
 官网：https://openclaw.ai/
+飞书对接文档：https://docs.openclaw.ai/zh-CN/channels/feishu
 飞书开放平台：https://open.feishu.cn/app
 ```
