@@ -21,9 +21,24 @@
 | 应用描述 | 个人专属 AI 智能助手 |
 | 应用类型 | 机器人应用 |
 
+![创建自建应用](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a3d0a511fea278250c353f5c33f03584)
+
 ---
 
-## 二、配置应用权限（批量导入）
+## 二、获取凭证
+
+在「凭证与基础信息」页面复制：
+
+- **App ID**：形如 `cli_xxxxxxxxxxxxx`
+- **App Secret**：一串加密字符
+
+后续配置 OpenClaw 时需要用到。
+
+![获取 App ID 和 App Secret](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=3a6ac22e96d76e4b85a1171ea207608b)
+
+---
+
+## 三、配置应用权限（批量导入）
 
 侧边栏「权限管理」→「批量导入」，粘贴以下 JSON 后确认开通：
 
@@ -55,29 +70,32 @@
 }
 ```
 
+![批量导入权限](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a386d201628f65771d9d423056d9dc59)
+
 ---
 
-## 三、配置事件订阅
+## 四、启用机器人能力
+
+侧边栏「应用功能」→「机器人」，开启机器人能力并填写机器人名称。
+
+![启用机器人能力](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=4c330500fd7db2e72569dc2a379697ee)
+
+---
+
+## 五、配置事件订阅
 
 侧边栏「事件与回调」→「事件订阅」：
 
-- 加密策略：**长连接模式**
+- 加密策略：**长连接模式**（WebSocket）
 - 订阅事件：搜索并添加 `im.message.receive_v1`（接收消息）
 
 事件订阅缺失是飞书机器人无响应最常见的原因之一。
 
----
-
-## 四、获取凭证
-
-在「凭证与基础信息」页面复制：
-
-- **App ID**：形如 `cli_xxxxxxxxxxxxx`
-- **App Secret**：一串加密字符
+![配置事件订阅](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=00aeb4809d9df159d846e0be19bc871e)
 
 ---
 
-## 五、OpenClaw 端安装并配置飞书插件
+## 六、OpenClaw 端安装并配置飞书插件
 
 ```bash
 # 安装飞书通道插件
@@ -92,27 +110,17 @@ openclaw gateway restart
 
 ---
 
-## 六、飞书开放平台发布机器人
+## 七、发布机器人、完成配对并验证
 
-回到飞书开放平台，创建版本：
+**发布**：回到飞书开放平台，创建版本，填写版本号，选择可用范围后点击发布。个人版自建应用提交后直接上线，无需审核。
 
-- 填写版本号和更新日志
-- 选择可用范围（自己 / 特定群组 / 全员）
-- 点击发布
-
-个人版自建应用提交后直接上线，无需审核。
-
----
-
-## 七、完成配对并验证
-
-在飞书中找到刚发布的机器人，发送任意消息，终端会出现配对码（Pairing Code），执行：
+**配对**：在飞书中找到刚发布的机器人，发送任意消息，终端会出现配对码（Pairing Code），执行：
 
 ```bash
 openclaw pairing approve feishu 配对码
 ```
 
-再次向机器人发消息，收到 AI 回复即表示对接成功。
+**验证**：再次向机器人发消息，收到 AI 回复即表示对接成功。
 
 ---
 
