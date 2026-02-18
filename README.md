@@ -6,6 +6,7 @@
 
 - [在 Claude Code 中使用 MiniMax-M2.1 模型进行 AI 编程](./在%20Claude%20Code%20中使用%20MiniMax-M2.1%20模型进行%20AI%20编程.md)
 - [告别数据泄露！OpenClaw 本地 AI 助手部署指南（附免费 API Key）](./OpenClaw%20一键部署指南.md)
+- [OpenClaw｜飞书机器人对接全步骤，7步跑通](./OpenClaw-飞书机器人对接全步骤.md)
 
 ## 技术栈
 
