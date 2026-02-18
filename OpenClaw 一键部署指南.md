@@ -419,8 +419,3 @@ OpenAI API Key：https://platform.openai.com/
 ```
 
 ---
-
-**本文同步发布于 GitHub**，完整版可访问：
-```
-https://github.com/liuy-byte/weixin-mp
-```
