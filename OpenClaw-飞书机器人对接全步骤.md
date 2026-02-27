@@ -22,13 +22,13 @@
 | 应用名称 | OpenClaw |
 | 应用描述 | 个人专属 AI 智能助手 |
 
-![创建自建应用](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a3d0a511fea278250c353f5c33f03584)
+![创建自建应用](https://raw.githubusercontent.com/liuy-byte/weixin-mp/main/images/feishu-step2-create-app.png)
 
 ### 获取凭证
 
 在「凭证与基础信息」页面复制 **App ID** 和 **App Secret**，后续配置 OpenClaw 时使用。
 
-![获取 App ID 和 App Secret](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=3a6ac22e96d76e4b85a1171ea207608b)
+![获取 App ID 和 App Secret](https://raw.githubusercontent.com/liuy-byte/weixin-mp/main/images/feishu-step3-credentials.png)
 
 ### 配置权限（批量导入）
 
@@ -62,13 +62,13 @@
 }
 ```
 
-![批量导入权限](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a386d201628f65771d9d423056d9dc59)
+![批量导入权限](https://raw.githubusercontent.com/liuy-byte/weixin-mp/main/images/feishu-step4-permissions.png)
 
 ### 启用机器人能力
 
 侧边栏「应用功能」→「机器人」，开启机器人能力并填写机器人名称。
 
-![启用机器人能力](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=4c330500fd7db2e72569dc2a379697ee)
+![启用机器人能力](https://raw.githubusercontent.com/liuy-byte/weixin-mp/main/images/feishu-step5-bot-capability.png)
 
 ### 配置事件订阅
 
@@ -79,7 +79,7 @@
 
 事件订阅缺失是机器人无响应最常见的原因。
 
-![配置事件订阅](https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=00aeb4809d9df159d846e0be19bc871e)
+![配置事件订阅](https://raw.githubusercontent.com/liuy-byte/weixin-mp/main/images/feishu-step6-event-subscription.png)
 
 ### 发布应用
 
