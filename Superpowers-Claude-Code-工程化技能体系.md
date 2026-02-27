@@ -8,7 +8,7 @@ GitHub 上有个叫 **Superpowers** 的项目，已有 **6.4 万+ Star**，专�
 
 它不是提示词库，而是一套**工程化技能体系**——把人类几十年积累的软件工程经验（TDD、Code Review、系统化调试），内化成 Claude Code 的本能行为。
 
-![Superpowers 项目概览](https://www.xmsumi.com/storage/picture/20260113/1049493f27be38192b9cc10bfef00991.png)
+![Superpowers 项目概览](https://raw.githubusercontent.com/liuy-byte/weixin-mp/main/images/superpowers-overview.png)
 
 ---
 
@@ -48,7 +48,7 @@ GitHub 上有个叫 **Superpowers** 的项目，已有 **6.4 万+ Star**，专�
 
 ## 三、7 个阶段完整工作流
 
-![Superpowers 工作流程](https://www.xmsumi.com/storage/picture/20260113/104957b270f2f57bfaca79c8b0309066.png)
+![Superpowers 工作流程](https://raw.githubusercontent.com/liuy-byte/weixin-mp/main/images/superpowers-workflow.png)
 
 **第一阶段：头脑风暴与设计** `/brainstorm`
 
