@@ -4,21 +4,27 @@
 
 微信公众号**赛博技术派**的文章仓库，内容以 AI 编程工具教程为主，面向国内开发者。
 
-本仓库用作 GitHub 图床，远端只存图片。Markdown 文档通过本地 `local` 分支用 git 管理，不推送到远端。
+本仓库使用两个 GitHub 仓库管理：
+
+- **weixin-mp-images**（public）：图床，只存图片
+- **weixin-mp-articles**（private）：文章，存 md 文件
 
 ## 文件命名规范
 
 md 文件以年月日为前缀，格式：`YYYYMMDD-标题.md`
 
-## Git 分支策略
+## Git 分支与远程仓库
 
-- **`main` 分支**：纯图床，只提交图片，推送到远端。`.gitignore` 忽略 md 文件
-- **`local` 分支**：跟踪所有 md 文件，仅本地使用，**不推送到远端**
+本地两个分支，分别推送到不同的远程仓库：
+
+- **`main` 分支** → `origin`（weixin-mp-images）：只提交图片
+- **`local` 分支** → `private`（weixin-mp-articles）：跟踪所有 md 文件
 
 ```bash
 # 日常写作（在 local 分支）
 git add *.md
 git commit -m "update: 文章标题"
+git push private local:main
 
 # 推图片到远端
 git checkout main
